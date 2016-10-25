@@ -1,24 +1,33 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public class InputManager : MonoBehaviour {
+public class InputManager : ScriptableObject {
 
-    public bool testevar;
+    public static Dictionary<string, int> inputs = new Dictionary<string, int>();
 
-	public virtual bool cta(int i)
+    public static bool getButton(string name)
     {
-        if(i == 1)
-            testevar = true;
+        if(Input.GetButton(name) || inputs.ContainsKey(name))
+        {
+            return true;
+        }
         else
-            testevar = false;
-        return testevar;
+        {
+            return false;
+        }
     }
 
-    void Update()
+    public static bool getButtonDown(string name)
     {
-        if(Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown(name) || inputs.ContainsKey(name))
         {
-            cta(1);
+            inputs.Remove(name);
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }

@@ -4,23 +4,87 @@ using System.Collections.Generic;
 using System;
 
 [System.Serializable]
-public class InputType
+public class SimulatedInput
 {
-    public string name = string.Empty;
-    public Color bg = Color.green;
+    public string name = "";
+    public float duration = 0.0f;
+    public SimulatedInputOption option;
 }
 
-public class InputScripter : MonoBehaviour {
+public enum SimulatedInputOption { Wait, Button, ButtonDown };
 
-    public List<InputType> input = new List<InputType>();
-	
-    public void addNewInput()
+public class InputScripter: MonoBehaviour
+{
+    public List<SimulatedInput> simulatedInputs = new List<SimulatedInput>();
+
+    bool waiting = false;
+
+    void Update()
     {
-        input.Add(new InputType());
+        compute();
     }
 
-    public void removeInput(int index)
+    void compute()
     {
-        input.RemoveAt(index);
+        if (waiting) return;
+
+        if(simulatedInputs.Count == 0)
+        {
+            Debug.Log("Input Scripter: Done!");
+            enabled = false;
+            return;
+        }
+
+        SimulatedInput now = popSimulatedInput();
+
+        if (now.option == SimulatedInputOption.Button)
+        {
+            StartCoroutine("computeButton", now);
+        }
+
+        if (now.option == SimulatedInputOption.ButtonDown)
+        {
+            computeButtonDown(now.name);
+        }
+
+        if (now.option == SimulatedInputOption.Wait)
+        {
+            waiting = true;
+            Invoke("resumeComputation", now.duration);
+        }
+    }
+
+    void resumeComputation()
+    {
+        waiting = false;
+    }
+
+    void computeButtonDown(string name)
+    {
+        InputManager.inputs.Add(name, 1);
+    }
+
+    IEnumerator computeButton(SimulatedInput btn)
+    {
+        InputManager.inputs.Add(btn.name, 1);
+        yield return new WaitForSeconds(btn.duration);
+        InputManager.inputs.Remove(btn.name);
+    }
+
+    public void addNewSimulatedInput()
+    {
+        simulatedInputs.Add(new SimulatedInput());
+    }
+
+    public void removeSimulatedInput(int index)
+    {
+        simulatedInputs.RemoveAt(index);
+    }
+
+    public SimulatedInput popSimulatedInput()
+    {
+        SimulatedInput head = simulatedInputs[0];
+        removeSimulatedInput(0);
+        return head;
     }
 }
