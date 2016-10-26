@@ -10,6 +10,11 @@ public class PlayerInputManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		processMovementInput ();
 	
+	}
+
+
+	void processMovementInput() {
 	}
 }
