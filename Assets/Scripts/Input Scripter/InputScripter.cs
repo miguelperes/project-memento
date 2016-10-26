@@ -87,4 +87,24 @@ public class InputScripter: MonoBehaviour
         removeSimulatedInput(0);
         return head;
     }
+
+    public void moveSimulatedInputUp(int index)
+    {
+        if(index > 0)
+        {
+            SimulatedInput value = simulatedInputs[index];
+            simulatedInputs.RemoveAt(index);
+            simulatedInputs.Insert(index - 1, value);
+        }
+    }
+
+    public void moveSimulatedInputDown(int index)
+    {
+        if (index < simulatedInputs.Count - 1)
+        {
+            SimulatedInput value = simulatedInputs[index];
+            simulatedInputs.RemoveAt(index);
+            simulatedInputs.Insert(index + 1, value);
+        }
+    }
 }

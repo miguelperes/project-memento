@@ -48,7 +48,17 @@ public class CustomInputScripter : Editor {
         GUILayout.BeginHorizontal();
         GUILayout.Label("Simulated Input:", GUILayout.ExpandWidth(true));
         it.simulatedInputs[i].option = (SimulatedInputOption) EditorGUILayout.Popup((int) it.simulatedInputs[i].option, inputOptions, GUILayout.Width(Screen.width * 0.35f));
-        if (GUILayout.Button("X", GUILayout.Width(Screen.width * 0.1f)))
+        if (GUILayout.Button("/\\", GUILayout.Width(Screen.width * 0.05f)))
+        {
+            it.moveSimulatedInputUp(i);
+            return;
+        }
+        if (GUILayout.Button("\\/", GUILayout.Width(Screen.width * 0.05f)))
+        {
+            it.moveSimulatedInputDown(i);
+            return;
+        }
+        if (GUILayout.Button("X", GUILayout.Width(Screen.width * 0.05f)))
         {
             it.removeSimulatedInput(i);
             return;
