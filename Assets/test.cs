@@ -17,9 +17,7 @@ public class test : MonoBehaviour {
             Debug.Log("Fire3");
         }
 
-        if (InputManager.getButton("Horizontal"))
-        {
-            Debug.Log("Horizontal");
-        }
+        Debug.Log("Vertical : " + InputManager.getAxisRaw("Vertical"));
+        Debug.Log("Horizontal : " + InputManager.getAxis("Horizontal"));
     }
 }

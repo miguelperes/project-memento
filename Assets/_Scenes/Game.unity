@@ -232,19 +232,44 @@ MonoBehaviour:
   simulatedInputs:
   - name: Fire1
     duration: 0
+    axisValue: 0
+    axisDelay: 0
     option: 2
   - name: 
     duration: 3
+    axisValue: 0
+    axisDelay: 0
     option: 0
   - name: Fire3
     duration: 10
+    axisValue: 0
+    axisDelay: 0
+    option: 1
+  - name: Horizontal
+    duration: 15
+    axisValue: 0
+    axisDelay: 0
     option: 1
   - name: 
     duration: 2
+    axisValue: 0
+    axisDelay: 0
     option: 0
-  - name: Fire2
+  - name: Vertical
+    duration: 5
+    axisValue: 0.7
+    axisDelay: 0
+    option: 4
+  - name: 
+    duration: 5
+    axisValue: 0
+    axisDelay: 0
+    option: 0
+  - name: 
     duration: 0
-    option: 2
+    axisValue: 0
+    axisDelay: 0
+    option: 0
 --- !u!1 &780061241
 GameObject:
   m_ObjectHideFlags: 0

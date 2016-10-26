@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class InputManager : ScriptableObject {
 
-    public static Dictionary<string, int> inputs = new Dictionary<string, int>();
+    public static Dictionary<string, float> inputs = new Dictionary<string, float>();
 
     public static bool getButton(string name)
     {
@@ -28,6 +28,38 @@ public class InputManager : ScriptableObject {
         else
         {
             return false;
+        }
+    }
+
+    public static float getAxisRaw(string name)
+    {
+        if (Input.GetAxisRaw(name) != 0f)
+        {
+            return Input.GetAxisRaw(name);
+        }
+        else if (inputs.ContainsKey(name))
+        {
+            return inputs[name];
+        }
+        else
+        {
+            return 0f;
+        }
+    }
+
+    public static float getAxis(string name)
+    {
+        if (Input.GetAxis(name) != 0f)
+        {
+            return Input.GetAxis(name);
+        }
+        else if (inputs.ContainsKey(name))
+        {
+            return inputs[name];
+        }
+        else
+        {
+            return 0f;
         }
     }
 }
