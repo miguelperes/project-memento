@@ -8,18 +8,29 @@ public class SimulatedInput
 {
     public string name = "";
     public float duration = 0.0f;
-    public float axisValue = 0.0f;
-    public float axisDelay = 0.0f;
+    public float valueX = 0.0f;
+    public float valueY = 0.0f;
+    public float delay = 0.0f;
     public SimulatedInputOption option;
 }
 
-public enum SimulatedInputOption { Wait, Button, ButtonDown, Axis , AxisRaw };
+public enum SimulatedInputOption { Wait, Button, ButtonDown, Axis , AxisRaw, MousePos };
 
 public class InputScripter: MonoBehaviour
 {
     public List<SimulatedInput> simulatedInputs = new List<SimulatedInput>();
 
     bool waiting = false;
+
+    void Start()
+    {
+        InputManager.isSimulatingMouse = true;
+    }
+
+    void OnDisable()
+    {
+        InputManager.isSimulatingMouse = false;
+    }
 
     void Update()
     {
@@ -30,39 +41,44 @@ public class InputScripter: MonoBehaviour
     {
         if (waiting) return;
 
-        if(simulatedInputs.Count == 0)
+        if(simulatedInputs.Count <= 0)
         {
             Debug.Log("Input Scripter: Done!");
             enabled = false;
             return;
         }
+        
+        SimulatedInput nextInput = popSimulatedInput();
 
-        SimulatedInput now = popSimulatedInput();
-
-        if (now.option == SimulatedInputOption.Button)
+        if (nextInput.option == SimulatedInputOption.Button)
         {
-            StartCoroutine("computeButton", now);
+            StartCoroutine("computeButton", nextInput);
         }
 
-        if (now.option == SimulatedInputOption.ButtonDown)
+        if (nextInput.option == SimulatedInputOption.ButtonDown)
         {
-            computeButtonDown(now.name);
+            computeButtonDown(nextInput.name);
         }
 
-        if (now.option == SimulatedInputOption.AxisRaw)
+        if (nextInput.option == SimulatedInputOption.AxisRaw)
         {
-            StartCoroutine("computeAxisRaw", now);
+            StartCoroutine("computeAxisRaw", nextInput);
         }
 
-        if (now.option == SimulatedInputOption.Axis)
+        if (nextInput.option == SimulatedInputOption.Axis)
         {
-            StartCoroutine("computeAxis", now);
+            StartCoroutine("computeAxis", nextInput);
         }
 
-        if (now.option == SimulatedInputOption.Wait)
+        if (nextInput.option == SimulatedInputOption.MousePos)
+        {
+            computeMousePos(nextInput);
+        }
+
+        if (nextInput.option == SimulatedInputOption.Wait)
         {
             waiting = true;
-            Invoke("resumeComputation", now.duration);
+            Invoke("resumeComputation", nextInput.duration);
         }
     }
 
@@ -85,28 +101,33 @@ public class InputScripter: MonoBehaviour
 
     IEnumerator computeAxisRaw(SimulatedInput btn)
     {
-        InputManager.inputs[btn.name] = btn.axisValue;
+        InputManager.inputs[btn.name] = btn.valueX;
         yield return new WaitForSeconds(btn.duration);
         InputManager.inputs.Remove(btn.name);
     }
 
     IEnumerator computeAxis(SimulatedInput btn)
     {
-        float waitAfterDelay = Mathf.Abs(btn.duration - btn.axisDelay);
-        float velocity = 1f / btn.axisDelay;
+        float waitAfterDelay = Mathf.Abs(btn.duration - btn.delay);
+        float velocity = 1f / btn.delay;
         float timer = 0.0f;
 
-        InputManager.inputs[btn.name] = btn.axisValue;
+        InputManager.inputs[btn.name] = btn.valueX;
 
-        while (timer < btn.axisDelay)
+        while (timer < btn.delay)
         {
             timer += Time.deltaTime;
-            InputManager.inputs[btn.name] = (timer * velocity) * btn.axisValue;
+            InputManager.inputs[btn.name] = (timer * velocity) * btn.valueX;
             yield return null;
         }
         
         yield return new WaitForSeconds(waitAfterDelay);
         InputManager.inputs.Remove(btn.name);
+    }
+
+    void computeMousePos(SimulatedInput btn)
+    {
+        InputManager.simulatedMousePos = new Vector3(btn.valueX, btn.valueY, 0f);
     }
 
     public void addNewSimulatedInput()

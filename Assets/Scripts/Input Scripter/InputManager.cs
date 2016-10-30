@@ -6,6 +6,23 @@ public class InputManager : ScriptableObject {
 
     public static Dictionary<string, float> inputs = new Dictionary<string, float>();
 
+    public static Vector3 simulatedMousePos = Vector3.zero;
+    public static bool isSimulatingMouse = false;
+    public static Vector3 mousePosition
+    {
+        get
+        {
+            if (isSimulatingMouse)
+            {
+                return simulatedMousePos;
+            }
+            else
+            {
+                return Input.mousePosition;
+            }
+        }
+    }
+
     public static bool getButton(string name)
     {
         if(Input.GetButton(name) || inputs.ContainsKey(name))
