@@ -52,63 +52,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   simulatedInputs:
-  - name: Fire1
-    duration: 0
-    valueX: 0
-    valueY: 0
-    delay: 0
-    option: 2
-  - name: 
-    duration: 1
-    valueX: 0
-    valueY: 0
-    delay: 0
-    option: 0
-  - name: Fire2
-    duration: 2
-    valueX: 0
-    valueY: 0
-    delay: 0
-    option: 1
-  - name: 
-    duration: 2
-    valueX: 0
-    valueY: 0
-    delay: 0
-    option: 0
-  - name: Horizontal
-    duration: 4
+  - name: Vertical
+    duration: 5
     valueX: 1
     valueY: 0
-    delay: 2
+    delay: 0
     option: 3
-  - name: 
-    duration: 3
-    valueX: 0
-    valueY: 0
-    delay: 0
-    option: 0
-  - name: Vertical
-    duration: 2
-    valueX: -0.5
-    valueY: 0
-    delay: 0
-    option: 4
-  - name: 
-    duration: 4
-    valueX: 0
-    valueY: 0
-    delay: 0
-    option: 0
-  - name: 
-    duration: 0
-    valueX: 100
-    valueY: 200
-    delay: 0
-    option: 5
-  - name: 
-    duration: 10
-    valueX: 0
-    valueY: 0
-    delay: 0
-    option: 0

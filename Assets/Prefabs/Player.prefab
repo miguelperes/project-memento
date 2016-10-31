@@ -21,6 +21,8 @@ GameObject:
   - 4: {fileID: 4000013082488170}
   - 54: {fileID: 54000012049446920}
   - 136: {fileID: 136000011285113126}
+  - 114: {fileID: 114000012796346078}
+  - 114: {fileID: 114000013610143622}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -123,6 +125,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &114000012796346078
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010946849482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42c54e7c8073d4fb2afd541d98242b14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMovement: {fileID: 114000013610143622}
+--- !u!114 &114000013610143622
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010946849482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 049149eba82d845df955a1efd5a2b7d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
 --- !u!136 &136000011285113126
 CapsuleCollider:
   m_ObjectHideFlags: 1
