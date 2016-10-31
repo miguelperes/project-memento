@@ -6,7 +6,7 @@ using System;
 [CustomEditor(typeof(InputScripter))]
 public class Editor_InputScripter : Editor {
 
-    InputScripter it;
+    private InputScripter it;
 
     string[] inputOptions = new string[]
     {
@@ -20,6 +20,8 @@ public class Editor_InputScripter : Editor {
 
     public override void OnInspectorGUI()
     {
+        Undo.RecordObject(target, "An attribute of the input simulator was modified");
+
         plotHeader();
 
         for(int i = 0; i < it.simulatedInputs.Count; i++)
@@ -36,6 +38,7 @@ public class Editor_InputScripter : Editor {
 
         if (GUILayout.Button("New"))
         {
+            Undo.RecordObject(target, "Added new input in the input simulator");
             it.addNewSimulatedInput();
         }
 
@@ -48,7 +51,7 @@ public class Editor_InputScripter : Editor {
 
         plotSimulatedInputHeader(i);
 
-        switch(it.simulatedInputs[i].option)
+        switch (it.simulatedInputs[i].option)
         {
             case SimulatedInputOption.Wait:
                 plotWaitOption(i);

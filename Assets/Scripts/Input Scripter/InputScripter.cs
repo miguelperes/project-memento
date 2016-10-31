@@ -43,7 +43,7 @@ public class InputScripter: MonoBehaviour
 
         if(simulatedInputs.Count <= 0)
         {
-            Debug.Log("Input Scripter: Done!");
+            //Debug.Log("Input Scripter: Done!");
             enabled = false;
             return;
         }
