@@ -4,6 +4,7 @@ using UnityEditor;
 using System;
 
 [CustomEditor(typeof(InputScripter))]
+[CanEditMultipleObjects]
 public class Editor_InputScripter : Editor {
 
     private InputScripter it;
