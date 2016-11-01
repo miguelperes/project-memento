@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class InputReader : MonoBehaviour {
+public class PlayerInputReader : MonoBehaviour {
 
 	[SerializeField] PlayerMovement playerMovement = null;
 
@@ -10,6 +10,6 @@ public class InputReader : MonoBehaviour {
 	}
 
 	void Update () {
-		playerMovement.move (InputManager.getAxis ("Horizontal"), InputManager.getAxis ("Vertical"));	
+		playerMovement.move (InputManager.getAxis ("Horizontal"), InputManager.getAxis ("Vertical"));
 	}
 }
