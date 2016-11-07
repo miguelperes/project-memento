@@ -3,20 +3,19 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
 
+	public PlayerMovementController movementController;
+
 	Rigidbody rigid;
 
-	[SerializeField] float speed = 2.0F;
-    
-	void Start ()
-    {
-		rigid = GetComponent<Rigidbody> ();
+	void Start () {
+		rigid = GetComponent<Rigidbody> ();	
 	}
 
-	public void move(float x, float y)
-    {
-        Vector3 moveVector = speed * (new Vector3(x, 0f, y)).normalized;
-        Vector3 verticalVelocity = new Vector3(0f, rigid.velocity.y, 0f);
+	void Update () {
+	
+	}
 
-        rigid.velocity = verticalVelocity + moveVector;
+	public void moveHorizontal(float dirX, float dirZ) {
+		rigid.velocity = movementController.getHorizontalVelocity(dirX, dirZ, rigid.velocity.y);
 	}
 }
