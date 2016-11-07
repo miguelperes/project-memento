@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerInputManager : MonoBehaviour {
-
+public class EnemyAI : MonoBehaviour {
+	public EnemyMovement enemyMovement = null;
+		
 	// Use this for initialization
 	void Start () {
 	
@@ -10,11 +11,6 @@ public class PlayerInputManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		processMovementInput ();
 	
-	}
-
-
-	void processMovementInput() {
 	}
 }
