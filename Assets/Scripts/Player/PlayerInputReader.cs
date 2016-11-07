@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class InputReader : MonoBehaviour {
+public class PlayerInputReader : MonoBehaviour {
 
 	[SerializeField] PlayerMovement playerMovement = null;
 
