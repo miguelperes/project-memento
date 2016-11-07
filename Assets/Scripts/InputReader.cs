@@ -10,6 +10,6 @@ public class InputReader : MonoBehaviour {
 	}
 
 	void Update () {
-		playerMovement.move (InputManager.getAxis ("Horizontal"), InputManager.getAxis ("Vertical"));	
+		playerMovement.moveHorizontal( InputManager.getAxis ("Horizontal"), InputManager.getAxis ("Vertical") );	
 	}
 }

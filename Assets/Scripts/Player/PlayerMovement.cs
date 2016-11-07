@@ -3,21 +3,19 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
 
+	public PlayerMovementController movementController;
+
 	Rigidbody rigid;
 
-	[SerializeField] float speed = 2.0F;
-
-	// Use this for initialization
 	void Start () {
 		rigid = GetComponent<Rigidbody> ();	
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 	
 	}
 
-	public void move(float x, float y) {
-		rigid.velocity = new Vector3 (x * speed, rigid.velocity.y, y * speed);
+	public void moveHorizontal(float dirX, float dirZ) {
+		rigid.velocity = movementController.getHorizontalVelocity(dirX, dirZ, rigid.velocity.y);
 	}
 }
