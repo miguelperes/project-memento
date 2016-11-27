@@ -3,7 +3,7 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 
-public class Bob : MonoBehaviour, IGoap
+public class Bob : MonoBehaviour, IGOAP
 {
     NavMeshAgent navAgent;
 
@@ -30,7 +30,7 @@ public class Bob : MonoBehaviour, IGoap
         return goal;
     }
 
-    public bool moveAgent(GoapAction nextAction)
+    public bool moveAgent(GOAPAction nextAction)
     {
         Vector3 targetPos = nextAction.target.transform.position;
 
@@ -47,7 +47,7 @@ public class Bob : MonoBehaviour, IGoap
         }
     }
 
-    public void planFound(HashSet<KeyValuePair<string, object>> goal, Queue<GoapAction> actions)
+    public void planFound(HashSet<KeyValuePair<string, object>> goal, Queue<GOAPAction> actions)
     {
         Debug.Log("<color=orange>Bob:</color> Plan Found.");
     }
@@ -57,7 +57,7 @@ public class Bob : MonoBehaviour, IGoap
         Debug.Log("<color=orange>Bob:</color> Actions finished.");
     }
 
-    public void planAborted(GoapAction aborter)
+    public void planAborted(GOAPAction aborter)
     {
         Debug.Log("<color=orange>Bob:</color> Plan aborted.");
     }

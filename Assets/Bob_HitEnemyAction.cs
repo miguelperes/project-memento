@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class Bob_HitEnemyAction : GoapAction {
+public class Bob_HitEnemyAction : GOAPAction {
 
     private bool attacked = false;
 
