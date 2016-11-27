@@ -36,7 +36,7 @@ public class Bob_HitEnemyAction : GOAPAction {
     public override bool perform(GameObject agent)
     {
         Debug.Log("<color=green>Bob:</color> Hitting player! Pow!");
-
+        attacked = true;
         return true;
     }
 }

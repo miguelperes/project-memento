@@ -38,11 +38,13 @@ public class Bob : MonoBehaviour, IGOAP
 
         if(Vector3.Distance(transform.position, targetPos) <= nextAction.getDistanceToPerform())
         {
-            navAgent.Stop();
+            Debug.Log("<color=yellow>Bob Move Agent:</color> true.");
+            nextAction.setInRange(true);
             return true;
         }
         else
         {
+            Debug.Log("<color=yellow>Bob Move Agent:</color> false.");
             return false;
         }
     }
