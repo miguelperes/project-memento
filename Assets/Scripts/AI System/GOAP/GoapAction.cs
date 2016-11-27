@@ -10,10 +10,12 @@ public abstract class GoapAction : MonoBehaviour {
 
 	private bool inRange = false;
 
-	/* The cost of performing the action. 
+	private float distanceToPerform = 1.0f;
+
+    /* The cost of performing the action. 
 	 * Figure out a weight that suits the action. 
 	 * Changing it will affect what actions are chosen during planning.*/
-	public float cost = 1f;
+    public float cost = 1f;
 
 	/**
 	 * An action often has to perform on an object. This is that object. Can be null. */
@@ -68,6 +70,10 @@ public abstract class GoapAction : MonoBehaviour {
 	public bool isInRange () {
 		return inRange;
 	}
+
+    public float getDistanceToPerform () {
+        return distanceToPerform;
+    }
 	
 	public void setInRange(bool inRange) {
 		this.inRange = inRange;
