@@ -17,6 +17,7 @@ public class Bob : MonoBehaviour, IGOAP
         HashSet<KeyValuePair<string, object>> worldData = new HashSet<KeyValuePair<string, object>>();
 
         worldData.Add(new KeyValuePair<string, object>("damagePlayer", false)); //to-do: change player's state for world data here
+		worldData.Add(new KeyValuePair<string, object>("pirocoptero", true));
 
         return worldData;
     }
@@ -25,7 +26,8 @@ public class Bob : MonoBehaviour, IGOAP
     {
         HashSet<KeyValuePair<string, object>> goal = new HashSet<KeyValuePair<string, object>>();
 
-        goal.Add(new KeyValuePair<string, object>("damagePlayer", true));
+		goal.Add(new KeyValuePair<string, object>("damagePlayer", true));
+        goal.Add(new KeyValuePair<string, object>("pirocoptero", true));
 
         return goal;
     }
@@ -34,17 +36,18 @@ public class Bob : MonoBehaviour, IGOAP
     {
         Vector3 targetPos = nextAction.target.transform.position;
 
-        navAgent.SetDestination(targetPos);
-
         if(Vector3.Distance(transform.position, targetPos) <= nextAction.getDistanceToPerform())
         {
             Debug.Log("<color=yellow>Bob Move Agent:</color> true.");
+			navAgent.Stop();
             nextAction.setInRange(true);
             return true;
         }
         else
         {
             Debug.Log("<color=yellow>Bob Move Agent:</color> false.");
+			navAgent.Resume ();
+			navAgent.SetDestination(targetPos);
             return false;
         }
     }

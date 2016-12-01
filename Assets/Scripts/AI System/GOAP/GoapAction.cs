@@ -8,7 +8,9 @@ public abstract class GOAPAction : MonoBehaviour {
 
 	private bool inRange = false;
 
-	private float distanceToPerform = 1.0f;
+	[SerializeField] private float minDistanceToPerform = 1.0f;
+
+	[SerializeField] private float minDistanceToEnable = 100.0f;
 
     public float cost = 1f;
 
@@ -40,8 +42,12 @@ public abstract class GOAPAction : MonoBehaviour {
 	}
 
     public float getDistanceToPerform(){
-        return distanceToPerform;
+        return minDistanceToPerform;
     }
+
+	public float getMinDistanceToEnable(){
+		return minDistanceToEnable;
+	}
 
 	public void setInRange(bool val){
 		inRange = val;

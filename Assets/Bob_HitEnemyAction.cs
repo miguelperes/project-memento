@@ -30,7 +30,11 @@ public class Bob_HitEnemyAction : GOAPAction {
     public override bool checkProceduralPrecondition(GameObject agent)
     {
         target = GameObject.Find("Player");
-        return target != null;
+
+		bool requiredDistance = Vector3.Distance (transform.position, target.transform.position) <= getMinDistanceToEnable ();
+		Debug.Log ("CHECANDO..............................");
+
+		return (target != null) && requiredDistance;
     }
 
     public override bool perform(GameObject agent)

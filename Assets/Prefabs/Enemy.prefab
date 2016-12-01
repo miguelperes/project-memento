@@ -42,6 +42,7 @@ GameObject:
   - 114: {fileID: 114000010283769408}
   - 114: {fileID: 114000013838993258}
   - 114: {fileID: 114000013869577592}
+  - 114: {fileID: 114000013578054058}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -272,6 +273,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0503e340c182d354a8977ab5d3c3eb39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114000013578054058
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010850741806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5d248eaec672461c92cc38ef648dfe3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minDistanceToPerform: 1
+  minDistanceToEnable: 100
+  cost: 1
+  target: {fileID: 0}
 --- !u!114 &114000013838993258
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -294,7 +310,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da920f7f5b5e9844da59ec997fafd4a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 1
+  minDistanceToPerform: 1
+  minDistanceToEnable: 1
+  cost: 5.4
   target: {fileID: 0}
 --- !u!136 &136000012400568954
 CapsuleCollider:
