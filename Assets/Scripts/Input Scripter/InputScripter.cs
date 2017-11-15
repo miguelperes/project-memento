@@ -50,35 +50,29 @@ public class InputScripter: MonoBehaviour
         
         SimulatedInput nextInput = popSimulatedInput();
 
-        if (nextInput.option == SimulatedInputOption.Button)
+        switch (nextInput.option)
         {
-            StartCoroutine("computeButton", nextInput);
-        }
-
-        if (nextInput.option == SimulatedInputOption.ButtonDown)
-        {
-            computeButtonDown(nextInput.name);
-        }
-
-        if (nextInput.option == SimulatedInputOption.AxisRaw)
-        {
-            StartCoroutine("computeAxisRaw", nextInput);
-        }
-
-        if (nextInput.option == SimulatedInputOption.Axis)
-        {
-            StartCoroutine("computeAxis", nextInput);
-        }
-
-        if (nextInput.option == SimulatedInputOption.MousePos)
-        {
-            computeMousePos(nextInput);
-        }
-
-        if (nextInput.option == SimulatedInputOption.Wait)
-        {
-            waiting = true;
-            Invoke("resumeComputation", nextInput.duration);
+            case SimulatedInputOption.Button:
+                StartCoroutine("computeButton", nextInput);
+                break;
+            case SimulatedInputOption.ButtonDown:
+                computeButtonDown(nextInput.name);
+                break;
+            case SimulatedInputOption.AxisRaw:
+                StartCoroutine("computeAxisRaw", nextInput);
+                break;
+            case SimulatedInputOption.Axis:
+                StartCoroutine("computeAxis", nextInput);
+                break;
+            case SimulatedInputOption.MousePos:
+                computeMousePos(nextInput);
+                break;
+            case SimulatedInputOption.Wait:
+                waiting = true;
+                Invoke("resumeComputation", nextInput.duration);
+                break;
+            default:
+                break;
         }
     }
 
@@ -165,5 +159,9 @@ public class InputScripter: MonoBehaviour
             simulatedInputs.RemoveAt(index);
             simulatedInputs.Insert(index + 1, value);
         }
+    }
+
+    public void stopSimulation(){
+        InputManager.inputs.Clear();
     }
 }
